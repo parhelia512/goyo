@@ -222,21 +222,30 @@ function initToc() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const id = entry.target.getAttribute("id");
+      // Fix: Handle both full URLs and fragment-only links
       const correspondingLink = document.querySelector(
-        `.toc-link[href="#${id}"]`,
+        `.toc-link[href="#${id}"], .toc-link[href$="#${id}"]`,
       );
 
       if (entry.isIntersecting) {
         // Remove active class from all links and close all details
-        tocLinks.forEach((link) => link.classList.remove("active"));
-        tocDetails.forEach((detail) => (detail.open = false));
+        tocLinks.forEach((link) => {
+          link.classList.remove("active");
+          link.removeAttribute("aria-current");
+        });
+        tocDetails.forEach((detail) => {
+          detail.open = false;
+          detail.setAttribute("aria-expanded", "false");
+        });
 
         // Add active class to the current link
         if (correspondingLink) {
           correspondingLink.classList.add("active");
+          correspondingLink.setAttribute("aria-current", "location");
           let parentDetails = correspondingLink.closest("details");
           while (parentDetails) {
             parentDetails.open = true;
+            parentDetails.setAttribute("aria-expanded", "true");
             parentDetails = parentDetails.parentElement.closest("details");
           }
         }
@@ -257,18 +266,81 @@ function initToc() {
 
   if (firstVisibleHeading) {
     const id = firstVisibleHeading.getAttribute("id");
+    // Fix: Handle both full URLs and fragment-only links
     const correspondingLink = document.querySelector(
-      `.toc-link[href="#${id}"]`,
+      `.toc-link[href="#${id}"], .toc-link[href$="#${id}"]`,
     );
     if (correspondingLink) {
       correspondingLink.classList.add("active");
+      correspondingLink.setAttribute("aria-current", "location");
       let parentDetails = correspondingLink.closest("details");
       while (parentDetails) {
         parentDetails.open = true;
+        parentDetails.setAttribute("aria-expanded", "true");
         parentDetails = parentDetails.parentElement.closest("details");
       }
     }
   }
+
+  // Add keyboard navigation support
+  tocDetails.forEach((details) => {
+    const summary = details.querySelector("summary");
+    if (summary) {
+      summary.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          details.open = !details.open;
+          details.setAttribute("aria-expanded", details.open.toString());
+        }
+      });
+
+      // Update aria-expanded when toggled by mouse
+      details.addEventListener("toggle", () => {
+        details.setAttribute("aria-expanded", details.open.toString());
+      });
+    }
+  });
+
+  // Add focus management for better keyboard navigation
+  tocLinks.forEach((link, index) => {
+    link.addEventListener("keydown", (e) => {
+      let targetIndex = index;
+      let targetLink = null;
+
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          targetIndex = (index + 1) % tocLinks.length;
+          targetLink = tocLinks[targetIndex];
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          targetIndex = (index - 1 + tocLinks.length) % tocLinks.length;
+          targetLink = tocLinks[targetIndex];
+          break;
+        case "Home":
+          e.preventDefault();
+          targetLink = tocLinks[0];
+          break;
+        case "End":
+          e.preventDefault();
+          targetLink = tocLinks[tocLinks.length - 1];
+          break;
+        default:
+          return;
+      }
+
+      if (targetLink) {
+        targetLink.focus();
+        // Ensure parent details are open when navigating to nested items
+        const parentDetails = targetLink.closest("details");
+        if (parentDetails && !parentDetails.open) {
+          parentDetails.open = true;
+          parentDetails.setAttribute("aria-expanded", "true");
+        }
+      }
+    });
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function () {

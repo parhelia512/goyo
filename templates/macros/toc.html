@@ -1,31 +1,49 @@
 {% macro toc(page) %}
 {% if page.toc %}
 <div class="hidden lg:block">
-    <div class="sticky top-20 px-4 py-2 border-l border-gray-500/15">
-        <h4 class="text-lg font-bold mb-1">ON THIS PAGE</h4>
-            <ul class="menu menu-sm toc-menu">
-            {% for h1 in page.toc %}
-                <li>
-                    {% if h1.children %}
-                    <details class="toc-details">
-                        <summary>
-                            <a href="{{ h1.permalink | safe }}" class="toc-link">{{ h1.title }}</a>
-                        </summary>
-                        <ul>
-                            {% for h2 in h1.children %}
-                                <li>
-                                    <a href="{{ h2.permalink | safe }}" class="toc-link">{{ h2.title }}</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </details>
-                    {% else %}
-                    <a href="{{ h1.permalink | safe }}" class="toc-link">{{ h1.title }}</a>
-                    {% endif %}
-                </li>
-            {% endfor %}
-            </ul>
-    </div>
+    <nav class="sticky top-20 px-4 py-2 border-l border-gray-500/15" 
+         role="navigation" 
+         aria-labelledby="toc-heading"
+         aria-describedby="toc-description">
+        <h4 id="toc-heading" class="text-lg font-bold mb-1">ON THIS PAGE</h4>
+        <p id="toc-description" class="sr-only">Table of contents with auto-expanding sections and active section highlighting</p>
+        <ul class="menu menu-sm toc-menu" role="list">
+        {% for h1 in page.toc %}
+            <li role="listitem">
+                {% if h1.children %}
+                <details class="toc-details" aria-expanded="false">
+                    <summary role="button" 
+                             tabindex="0"
+                             aria-controls="toc-section-{{ loop.index }}"
+                             aria-describedby="toc-expand-hint">
+                        <a href="{{ h1.permalink | safe }}" 
+                           class="toc-link" 
+                           tabindex="-1"
+                           aria-describedby="toc-usage-hint">{{ h1.title }}</a>
+                    </summary>
+                    <ul id="toc-section-{{ loop.index }}" role="list">
+                        {% for h2 in h1.children %}
+                            <li role="listitem">
+                                <a href="{{ h2.permalink | safe }}" 
+                                   class="toc-link"
+                                   aria-describedby="toc-usage-hint">{{ h2.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </details>
+                {% else %}
+                <a href="{{ h1.permalink | safe }}" 
+                   class="toc-link"
+                   aria-describedby="toc-usage-hint">{{ h1.title }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+        <div class="sr-only">
+            <p id="toc-usage-hint">Navigate to section. Active section is highlighted automatically as you scroll.</p>
+            <p id="toc-expand-hint">Press Enter or Space to expand/collapse subsections.</p>
+        </div>
+    </nav>
 </div>
 {% endif %}
 {% endmacro toc %}
