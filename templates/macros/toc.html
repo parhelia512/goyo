@@ -1,8 +1,8 @@
 {% macro toc(page) %}
 {% if page.toc %}
 <div class="hidden lg:block">
-    <nav class="sticky top-20 px-4 py-2 border-l border-gray-500/15" 
-         role="navigation" 
+    <nav class="sticky top-20 px-4 py-2 border-l border-gray-500/15"
+         role="navigation"
          aria-labelledby="toc-heading"
          aria-describedby="toc-description">
         <h4 id="toc-heading" class="text-lg font-bold mb-1">ON THIS PAGE</h4>
@@ -12,19 +12,19 @@
             <li role="listitem">
                 {% if h1.children %}
                 <details class="toc-details" aria-expanded="false">
-                    <summary role="button" 
+                    <summary role="button"
                              tabindex="0"
                              aria-controls="toc-section-{{ loop.index }}"
                              aria-describedby="toc-expand-hint">
-                        <a href="{{ h1.permalink | safe }}" 
-                           class="toc-link" 
+                        <a href="{{ h1.permalink | safe }}"
+                           class="toc-link"
                            tabindex="-1"
                            aria-describedby="toc-usage-hint">{{ h1.title }}</a>
                     </summary>
                     <ul id="toc-section-{{ loop.index }}" role="list">
                         {% for h2 in h1.children %}
                             <li role="listitem">
-                                <a href="{{ h2.permalink | safe }}" 
+                                <a href="{{ h2.permalink | safe }}"
                                    class="toc-link"
                                    aria-describedby="toc-usage-hint">{{ h2.title }}</a>
                             </li>
@@ -32,7 +32,7 @@
                     </ul>
                 </details>
                 {% else %}
-                <a href="{{ h1.permalink | safe }}" 
+                <a href="{{ h1.permalink | safe }}"
                    class="toc-link"
                    aria-describedby="toc-usage-hint">{{ h1.title }}</a>
                 {% endif %}

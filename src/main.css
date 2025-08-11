@@ -220,52 +220,48 @@ blockquote cite:before {
 
 /* Table of Contents Styling */
 .toc-link {
-  @apply transition-all duration-200 ease-in-out;
-  @apply border-l-2 border-transparent;
-  @apply pl-2;
+    @apply transition-all duration-200 ease-in-out;
+    @apply border-l-2 border-transparent;
+    @apply pl-2;
 }
 
 .toc-link:hover {
-  @apply text-primary;
-  @apply border-l-primary/30;
+    @apply text-primary;
 }
 
 .toc-link.active {
-  @apply text-primary font-medium;
-  @apply border-l-primary;
-  @apply bg-primary/5;
-  @apply rounded-r;
+    @apply text-primary font-medium;
+    @apply rounded-r;
 }
 
 .toc-link:focus {
-  @apply outline-2 outline-primary outline-offset-2;
-  @apply bg-primary/10;
+    @apply outline-2 outline-primary outline-offset-2;
 }
 
 .toc-details {
-  @apply transition-all duration-300 ease-in-out;
+    @apply transition-all duration-300 ease-in-out;
 }
 
 .toc-details[open] {
-  @apply transition-all duration-300 ease-in-out;
+    @apply transition-all duration-300 ease-in-out;
 }
 
 /* Smooth expand animation for details */
 .toc-details summary {
-  @apply cursor-pointer;
-  @apply transition-all duration-200 ease-in-out;
+    @apply cursor-pointer;
+    @apply transition-all duration-200 ease-in-out;
 }
 
 .toc-details summary:hover {
-  @apply text-primary;
+    @apply text-primary;
 }
 
 .toc-details summary:focus {
-  @apply outline-2 outline-primary outline-offset-2;
+    @apply outline-2 outline-primary outline-offset-2;
 }
 
 .toc-details summary::marker {
-  @apply transition-all duration-200 ease-in-out;
+    @apply transition-all duration-200 ease-in-out;
 }
 
 .copy-code-button {
