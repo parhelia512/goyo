@@ -8,6 +8,28 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Initialize theme and brightness before CSS loads to prevent FOUC -->
+    <script>
+        (function() {
+            // Theme mapping - maps user-friendly names to actual DaisyUI theme names
+            var themeMapping = { "goyo-dark": "night", "goyo-light": "lofi" };
+            
+            // Get default values from config
+            var defaultColorset = "{{ config.extra.default_colorset | default(value='dark') }}";
+            var defaultBrightness = "{{ config.extra.brightness | default(value='normal') }}";
+            var themeMap = { "dark": "goyo-dark", "light": "goyo-light" };
+            var fallbackTheme = themeMap[defaultColorset] || "goyo-dark";
+            
+            // Get theme from localStorage or use fallback
+            var currentUserTheme = localStorage.getItem('theme') || fallbackTheme;
+            var actualTheme = themeMapping[currentUserTheme] || currentUserTheme;
+            
+            // Set theme and brightness attributes immediately
+            document.documentElement.setAttribute("data-theme", actualTheme);
+            document.documentElement.setAttribute("data-brightness", defaultBrightness);
+        })();
+    </script>
+
     <style>
         @font-face {
             font-family: "Pretendard-Regular";

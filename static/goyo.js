@@ -311,17 +311,12 @@ function initTheme() {
   var fallbackTheme =
     window && window.fallbackTheme ? window.fallbackTheme : "goyo-dark";
   var currentUserTheme = localStorage.getItem("theme") || fallbackTheme;
-  
-  // Get brightness from config
-  var defaultBrightness =
-    window && window.defaultBrightness ? window.defaultBrightness : "normal";
 
   // Map user theme to actual DaisyUI theme
   var actualTheme = themeMapping[currentUserTheme] || currentUserTheme;
   document.documentElement.setAttribute("data-theme", actualTheme);
   
-  // Set brightness attribute
-  document.documentElement.setAttribute("data-brightness", defaultBrightness);
+  // Note: brightness attribute is already set in head.html to prevent FOUC
 
   // Set checkbox state based on current theme
   themeController.checked = currentUserTheme === "goyo-dark";
