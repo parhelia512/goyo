@@ -129,6 +129,17 @@
       <meta name="twitter:image" content="{{ get_url(path=config.extra.default_thumbnail) | safe }}" />
       {% endif %}
 
+      <!-- Browser address bar color -->
+      {% set colorset = config.extra.default_colorset | default(value='dark') %}
+      {% set brightness = config.extra.brightness | default(value='normal') %}
+      {% if colorset == "dark" and brightness == "darker" %}
+      <meta name="theme-color" content="#000000">
+      {% elif colorset == "dark" %}
+      <meta name="theme-color" content="#0f172a">
+      {% elif colorset == "light" %}
+      <meta name="theme-color" content="#ffffff">
+      {% endif %}
+
       <!-- CSS -->
     <link rel="stylesheet" href="{{ get_url(path="css/main.css") | safe }}">
     <link rel="stylesheet" href="{{ get_url(path="css/font-awesome.min.css") | safe }}">

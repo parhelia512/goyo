@@ -7,7 +7,17 @@
 {% import "macros/sidebar.html" as macros_sidebar %}
 
 <!DOCTYPE html>
+{% set colorset = config.extra.default_colorset | default(value='dark') %}
+{% set brightness = config.extra.brightness | default(value='normal') %}
+{% if colorset == "dark" and brightness == "darker" %}
+<html lang="{{ lang | default(value='en') }}" style="background-color: #000000;">
+{% elif colorset == "dark" %}
+<html lang="{{ lang | default(value='en') }}" style="background-color: #0f172a;">
+{% elif colorset == "light" %}
+<html lang="{{ lang | default(value='en') }}" style="background-color: #ffffff;">
+{% else %}
 <html lang="{{ lang | default(value='en') }}">
+{% endif %}
 <head>
     {% if page is defined %}
         {{ macros_head::head(config=config, page=page, section=false, current_url=config.base_url) }}
