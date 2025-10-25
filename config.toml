@@ -24,7 +24,7 @@ footer_html = "Powered by <a href='https://www.getzola.org'>Zola</a> and <a href
 default_thumbnail = "images/default_thumbnail.jpg"
 twitter_site = "@hahwul"
 twitter_creator = "@hahwul"
-default_colorset = "dark"
+default_colorset = "dark" # Options: "dark", "light"
 brightness = "normal"  # Options: "darker", "normal", "lighter"
 gtag = ""
 sidebar_expand_depth = 1
