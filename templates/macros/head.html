@@ -1,15 +1,20 @@
+{% macro get_theme_color(config) %}
+{%- set colorset = config.extra.default_colorset | default(value='dark') -%}
+{%- set brightness = config.extra.brightness | default(value='normal') -%}
+{%- if colorset == "dark" and brightness == "darker" -%}
+#000000
+{%- elif colorset == "dark" -%}
+#0f172a
+{%- elif colorset == "light" -%}
+#ffffff
+{%- else -%}
+#0f172a
+{%- endif -%}
+{% endmacro get_theme_color %}
+
 {% macro html_tag(config, lang) %}
-{% set colorset = config.extra.default_colorset | default(value='dark') %}
-{% set brightness = config.extra.brightness | default(value='normal') %}
-{% if colorset == "dark" and brightness == "darker" %}
-<html lang="{{ lang | default(value='en') }}" style="background-color: #000000;">
-{% elif colorset == "dark" %}
-<html lang="{{ lang | default(value='en') }}" style="background-color: #0f172a;">
-{% elif colorset == "light" %}
-<html lang="{{ lang | default(value='en') }}" style="background-color: #ffffff;">
-{% else %}
-<html lang="{{ lang | default(value='en') }}">
-{% endif %}
+{%- set theme_color = self::get_theme_color(config=config) | trim -%}
+<html lang="{{ lang | default(value='en') }}" style="background-color: {{ theme_color }};">
 {% endmacro html_tag %}
 
 {% macro head(config, page, section, current_url) %}
@@ -143,15 +148,7 @@
       {% endif %}
 
       <!-- Browser address bar color -->
-      {% set colorset = config.extra.default_colorset | default(value='dark') %}
-      {% set brightness = config.extra.brightness | default(value='normal') %}
-      {% if colorset == "dark" and brightness == "darker" %}
-      <meta name="theme-color" content="#000000">
-      {% elif colorset == "dark" %}
-      <meta name="theme-color" content="#0f172a">
-      {% elif colorset == "light" %}
-      <meta name="theme-color" content="#ffffff">
-      {% endif %}
+      <meta name="theme-color" content="{{ self::get_theme_color(config=config) | trim }}">
 
       <!-- CSS -->
     <link rel="stylesheet" href="{{ get_url(path="css/main.css") | safe }}">
