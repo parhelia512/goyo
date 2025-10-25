@@ -8,7 +8,7 @@
 {% set not_found_url = config.base_url ~ "/404.html" %}
 
 <!DOCTYPE html>
-<html lang="{{ lang | default(value='en') }}">
+{{ macros_head::html_tag(config=config, lang=lang) }}
 <head>
     {{ macros_head::head(
         config=config,

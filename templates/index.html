@@ -7,7 +7,7 @@
 {% import "macros/sidebar.html" as macros_sidebar %}
 
 <!DOCTYPE html>
-<html lang="{{ lang | default(value='en') }}">
+{{ macros_head::html_tag(config=config, lang=lang) }}
 <head>
     {% if page is defined %}
         {{ macros_head::head(config=config, page=page, section=false, current_url=config.base_url) }}
