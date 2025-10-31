@@ -64,5 +64,5 @@ testimonials = [
 [extra.final_cta_section]
 title = "Contributing"
 description = "Goyo is an open-source project made with ❤️. If you want to contribute to this project, please see CONTRIBUTING.md and submit a pull request with your cool content!"
-button = { text = "View Contributing Guide", url = "https://github.com/hahwul/goyo/blob/main/CONTRIBUTING.md" }
+button = { text = "View Contributing Guide", url = "/contributing" }
 +++
