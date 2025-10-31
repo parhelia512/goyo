@@ -1,4 +1,11 @@
-# Contributing to Goyo
++++
+title = "Contributing"
+description = "Guide to contributing to Goyo"
+weight = 9
+sort_by = "weight"
+
+[extra]
++++
 
 Thank you for your interest in contributing to Goyo! We welcome contributions from everyone and appreciate your help in making Goyo better.
 
@@ -183,7 +190,3 @@ Contributors are recognized in:
 - The GitHub contributors page
 
 Thank you for contributing to Goyo! Your efforts help make this project better for everyone. ❤️
-
----
-
-For a more detailed version of this guide, please visit the [Contributing documentation](https://goyo.hahwul.com/contributing/).
