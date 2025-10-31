@@ -610,19 +610,27 @@
 }
 
 /* Sidebar search input border */
-[data-theme="night"][data-brightness="darker"] .drawer-side .input.border-gray-500\/15 {
+[data-theme="night"][data-brightness="darker"]
+    .drawer-side
+    .input.border-gray-500\/15 {
     border-color: rgba(80, 80, 90, 0.2) !important;
 }
 
-[data-theme="night"][data-brightness="darker"] .drawer-side .input.border-gray-500\/15:hover {
+[data-theme="night"][data-brightness="darker"]
+    .drawer-side
+    .input.border-gray-500\/15:hover {
     border-color: rgba(100, 100, 110, 0.4) !important;
 }
 
-[data-theme="night"][data-brightness="lighter"] .drawer-side .input.border-gray-500\/15 {
+[data-theme="night"][data-brightness="lighter"]
+    .drawer-side
+    .input.border-gray-500\/15 {
     border-color: rgba(120, 130, 150, 0.18) !important;
 }
 
-[data-theme="night"][data-brightness="lighter"] .drawer-side .input.border-gray-500\/15:hover {
+[data-theme="night"][data-brightness="lighter"]
+    .drawer-side
+    .input.border-gray-500\/15:hover {
     border-color: rgba(140, 150, 170, 0.35) !important;
 }
 
@@ -634,19 +642,27 @@
     border-color: rgba(100, 116, 139, 0.25) !important;
 }
 
-[data-theme="lofi"][data-brightness="darker"] .drawer-side .input.border-gray-500\/15 {
+[data-theme="lofi"][data-brightness="darker"]
+    .drawer-side
+    .input.border-gray-500\/15 {
     border-color: rgba(71, 85, 105, 0.18) !important;
 }
 
-[data-theme="lofi"][data-brightness="darker"] .drawer-side .input.border-gray-500\/15:hover {
+[data-theme="lofi"][data-brightness="darker"]
+    .drawer-side
+    .input.border-gray-500\/15:hover {
     border-color: rgba(71, 85, 105, 0.35) !important;
 }
 
-[data-theme="lofi"][data-brightness="lighter"] .drawer-side .input.border-gray-500\/15 {
+[data-theme="lofi"][data-brightness="lighter"]
+    .drawer-side
+    .input.border-gray-500\/15 {
     border-color: rgba(148, 163, 184, 0.08) !important;
 }
 
-[data-theme="lofi"][data-brightness="lighter"] .drawer-side .input.border-gray-500\/15:hover {
+[data-theme="lofi"][data-brightness="lighter"]
+    .drawer-side
+    .input.border-gray-500\/15:hover {
     border-color: rgba(148, 163, 184, 0.2) !important;
 }
 
@@ -724,6 +740,30 @@ blockquote {
 .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+.thin-scrollbar {
+    -ms-overflow-style: auto; /* IE and Edge (legacy) */
+    scrollbar-width: "thin"; /* Firefox */
+    scrollbar-color: rgba(156, 163, 175, 0.3) transparent; /* thumb track */
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.8);
+    border-radius: 3px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.5);
 }
 
 @import "./syntax-highlight.css";
