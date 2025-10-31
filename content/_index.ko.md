@@ -64,5 +64,5 @@ testimonials = [
 [extra.final_cta_section]
 title = "기여하기"
 description = "Goyo는 ❤️로 만들어진 오픈소스 프로젝트입니다. 이 프로젝트에 기여하고 싶다면, CONTRIBUTING.md를 확인하고 멋진 콘텐츠와 함께 풀 리퀘스트를 제출해주세요!"
-button = { text = "기여 가이드 보기", url = "https://github.com/hahwul/goyo/blob/main/CONTRIBUTING.md" }
+button = { text = "기여 가이드 보기", url = "/ko/contributing" }
 +++
