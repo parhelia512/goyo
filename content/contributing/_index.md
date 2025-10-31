@@ -1,7 +1,7 @@
 +++
 title = "Contributing"
 description = "Guide to contributing to Goyo"
-weight = 9
+weight = 7
 sort_by = "weight"
 
 [extra]
