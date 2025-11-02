@@ -690,6 +690,11 @@
     @apply no-underline;
 }
 
+/* ToC Active Link Highlighting */
+.toc-link.active {
+    @apply text-base-content font-semibold;
+}
+
 /* Gallery Styles */
 .gallery-box {
     margin-bottom: 40px;
