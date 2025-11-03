@@ -332,37 +332,54 @@ function initTheme() {
 
 function initToc() {
   const headings = document.querySelectorAll(
-    ".prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6",
+    ".prose h1[id], .prose h2[id], .prose h3[id], .prose h4[id], .prose h5[id], .prose h6[id]",
   );
   const tocLinks = document.querySelectorAll(".toc-link");
   const tocDetails = document.querySelectorAll(".toc-details");
 
+  if (headings.length === 0 || tocLinks.length === 0) {
+    return; // No ToC or headings on this page
+  }
+
+  let activeId = null;
+
+  const activateLink = (id) => {
+    if (activeId === id) return; // Already active, no need to update
+    
+    activeId = id;
+    
+    // Remove active class from all links and close all details
+    tocLinks.forEach((link) => link.classList.remove("active"));
+    tocDetails.forEach((detail) => (detail.open = false));
+
+    // Match links with href ending in #id (handles both relative and absolute URLs)
+    const correspondingLink = document.querySelector(
+      `.toc-link[href$="#${id}"]`,
+    );
+
+    // Add active class to the current link
+    if (correspondingLink) {
+      correspondingLink.classList.add("active");
+      let parentDetails = correspondingLink.closest("details");
+      while (parentDetails) {
+        parentDetails.open = true;
+        parentDetails = parentDetails.parentElement.closest("details");
+      }
+    }
+  };
+
   const observerOptions = {
     root: null, // viewport
-    rootMargin: "0px 0px -50% 0px", // Trigger when 50% of the element is visible
-    threshold: 0, // Trigger as soon as any part of the element is visible
+    rootMargin: "-20% 0px -35% 0px", // Trigger when heading enters the top 20-65% of viewport
+    threshold: 0,
   };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      const id = entry.target.getAttribute("id");
-      const correspondingLink = document.querySelector(
-        `.toc-link[href="#${id}"]`,
-      );
-
       if (entry.isIntersecting) {
-        // Remove active class from all links and close all details
-        tocLinks.forEach((link) => link.classList.remove("active"));
-        tocDetails.forEach((detail) => (detail.open = false));
-
-        // Add active class to the current link
-        if (correspondingLink) {
-          correspondingLink.classList.add("active");
-          let parentDetails = correspondingLink.closest("details");
-          while (parentDetails) {
-            parentDetails.open = true;
-            parentDetails = parentDetails.parentElement.closest("details");
-          }
+        const id = entry.target.getAttribute("id");
+        if (id) {
+          activateLink(id);
         }
       }
     });
@@ -373,7 +390,7 @@ function initToc() {
   });
 
   // Handle initial state on load
-  // Find the first heading in view and activate its TOC link
+  // Find the first heading with ID that is in the viewport
   const firstVisibleHeading = Array.from(headings).find((heading) => {
     const rect = heading.getBoundingClientRect();
     return rect.top >= 0 && rect.top <= window.innerHeight;
@@ -381,16 +398,8 @@ function initToc() {
 
   if (firstVisibleHeading) {
     const id = firstVisibleHeading.getAttribute("id");
-    const correspondingLink = document.querySelector(
-      `.toc-link[href="#${id}"]`,
-    );
-    if (correspondingLink) {
-      correspondingLink.classList.add("active");
-      let parentDetails = correspondingLink.closest("details");
-      while (parentDetails) {
-        parentDetails.open = true;
-        parentDetails = parentDetails.parentElement.closest("details");
-      }
+    if (id) {
+      activateLink(id);
     }
   }
 }
