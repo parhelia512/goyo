@@ -45,19 +45,124 @@ git submodule add https://github.com/hahwul/goyo themes/goyo
 
 If you want to update the Goyo theme to the latest version, you can do so easily:
 
-- If you cloned the theme:
-  ```bash
-  cd themes/goyo
-  git pull
-  ```
+### If you cloned the theme
 
-- If you added the theme as a submodule:
-  ```bash
-  git submodule sync
-  git submodule update --remote
-  ```
+If you installed Goyo by cloning the repository directly, you can update it with:
+
+```bash
+cd themes/goyo
+git pull origin main
+```
+
+This will fetch and merge the latest changes from the main branch.
+
+### If you added the theme as a submodule
+
+If you installed Goyo as a git submodule, update it with:
+
+```bash
+git submodule update --remote themes/goyo
+```
+
+Or for a more comprehensive update of all submodules:
+
+```bash
+git submodule sync
+git submodule update --remote
+```
+
+After updating the submodule, commit the changes to your repository:
+
+```bash
+git add themes/goyo
+git commit -m "Update Goyo theme to latest version"
+git push
+```
 
 This will ensure you always have the latest features and fixes from the Goyo theme.
+
+### Automated Updates with GitHub Actions
+
+For projects hosted on GitHub, you can automate theme updates using GitHub Actions. This will create periodic pull requests whenever a new version of Goyo is available.
+
+Create a file at `.github/workflows/update-goyo-theme.yml` in your documentation repository:
+
+```yaml
+name: Update Goyo Theme
+
+on:
+  schedule:
+    # Run every Monday at 9:00 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-theme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Update Goyo submodule
+        id: update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Get current commit hash
+          cd themes/goyo
+          OLD_COMMIT=$(git rev-parse HEAD)
+          cd ../..
+          
+          # Update submodule to latest
+          git submodule update --remote themes/goyo
+          
+          # Get new commit hash
+          cd themes/goyo
+          NEW_COMMIT=$(git rev-parse HEAD)
+          cd ../..
+          
+          # Check if there are changes
+          if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
+            echo "updated=true" >> $GITHUB_OUTPUT
+            echo "old_commit=$OLD_COMMIT" >> $GITHUB_OUTPUT
+            echo "new_commit=$NEW_COMMIT" >> $GITHUB_OUTPUT
+          else
+            echo "updated=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Create Pull Request
+        if: steps.update.outputs.updated == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update Goyo theme to latest version"
+          title: "Update Goyo theme"
+          body: |
+            This PR updates the Goyo theme to the latest version.
+            
+            **Changes:** ${{ steps.update.outputs.old_commit }} → ${{ steps.update.outputs.new_commit }}
+            
+            Please review the [Goyo changelog](https://github.com/hahwul/goyo/releases) for details on what's new.
+            
+            ---
+            *This PR was automatically created by the Update Goyo Theme workflow.*
+          branch: update-goyo-theme
+          delete-branch: true
+          labels: dependencies, documentation
+```
+
+The workflow can be customized:
+- **Schedule**: Modify the `cron` expression (e.g., `'0 9 * * *'` for daily, `'0 9 1 * *'` for monthly)
+- **Manual trigger**: Use the Actions tab in your repository to run it manually
+- Ensure your repository settings allow Actions to create pull requests (Settings → Actions → General → Workflow permissions)
 
 ## Set the theme in config.toml
 
