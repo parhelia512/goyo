@@ -45,17 +45,39 @@ git submodule add https://github.com/hahwul/goyo themes/goyo
 
 If you want to update the Goyo theme to the latest version, you can do so easily:
 
-- If you cloned the theme:
-  ```bash
-  cd themes/goyo
-  git pull
-  ```
+### If you cloned the theme
 
-- If you added the theme as a submodule:
-  ```bash
-  git submodule sync
-  git submodule update --remote
-  ```
+If you installed Goyo by cloning the repository directly, you can update it with:
+
+```bash
+cd themes/goyo
+git pull origin main
+```
+
+This will fetch and merge the latest changes from the main branch.
+
+### If you added the theme as a submodule
+
+If you installed Goyo as a git submodule, update it with:
+
+```bash
+git submodule update --remote themes/goyo
+```
+
+Or for a more comprehensive update of all submodules:
+
+```bash
+git submodule sync
+git submodule update --remote
+```
+
+After updating the submodule, commit the changes to your repository:
+
+```bash
+git add themes/goyo
+git commit -m "Update Goyo theme to latest version"
+git push
+```
 
 This will ensure you always have the latest features and fixes from the Goyo theme.
 
