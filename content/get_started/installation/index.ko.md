@@ -41,6 +41,107 @@ Submodule 예시
 git submodule add https://github.com/hahwul/goyo themes/goyo
 ```
 
+## Goyo 테마 업데이트
+
+Goyo 테마를 최신 버전으로 업데이트하려면 아래 방법을 사용할 수 있습니다.
+
+- clone으로 설치한 경우:
+  ```bash
+  cd themes/goyo
+  git pull
+  ```
+
+- submodule로 설치한 경우:
+  ```bash
+  git submodule sync
+  git submodule update --remote
+  ```
+
+최신 Goyo 테마의 기능과 버그 수정 사항을 적용할 수 있습니다.
+
+### GitHub Actions를 통한 자동 업데이트
+
+GitHub에 호스팅된 프로젝트의 경우, GitHub Actions를 사용하여 테마 업데이트를 자동화할 수 있습니다. 이를 통해 새로운 버전의 Goyo가 출시될 때마다 주기적으로 Pull Request가 생성됩니다.
+
+문서 저장소에 `.github/workflows/update-goyo-theme.yml` 파일을 생성합니다:
+
+```yaml
+name: Update Goyo Theme
+
+on:
+  schedule:
+    # 매주 월요일 오전 9시(UTC)에 실행
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # 수동 실행 허용
+
+jobs:
+  update-theme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Update Goyo submodule
+        id: update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 현재 커밋 해시 가져오기
+          cd themes/goyo
+          OLD_COMMIT=$(git rev-parse HEAD)
+          cd ../..
+          
+          # submodule을 최신 버전으로 업데이트
+          git submodule update --remote themes/goyo
+          
+          # 새 커밋 해시 가져오기
+          cd themes/goyo
+          NEW_COMMIT=$(git rev-parse HEAD)
+          cd ../..
+          
+          # 변경 사항 확인
+          if [ "$OLD_COMMIT" != "$NEW_COMMIT" ]; then
+            echo "updated=true" >> $GITHUB_OUTPUT
+            echo "old_commit=$OLD_COMMIT" >> $GITHUB_OUTPUT
+            echo "new_commit=$NEW_COMMIT" >> $GITHUB_OUTPUT
+          else
+            echo "updated=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Create Pull Request
+        if: steps.update.outputs.updated == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update Goyo theme to latest version"
+          title: "Goyo 테마 업데이트"
+          body: |
+            이 PR은 Goyo 테마를 최신 버전으로 업데이트합니다.
+            
+            **변경 사항:** ${{ steps.update.outputs.old_commit }} → ${{ steps.update.outputs.new_commit }}
+            
+            새로운 기능에 대한 자세한 내용은 [Goyo 변경 로그](https://github.com/hahwul/goyo/releases)를 참조하세요.
+            
+            ---
+            *이 PR은 Update Goyo Theme 워크플로우에 의해 자동으로 생성되었습니다.*
+          branch: update-goyo-theme
+          delete-branch: true
+          labels: dependencies, documentation
+```
+
+워크플로우를 커스터마이징할 수 있습니다:
+- **스케줄**: `cron` 표현식을 수정 (예: `'0 9 * * *'` 매일, `'0 9 1 * *'` 매월)
+- **수동 실행**: 저장소의 Actions 탭에서 수동으로 실행 가능
+- 저장소 설정에서 Actions가 Pull Request를 생성할 수 있도록 허용 필요 (Settings → Actions → General → Workflow permissions)
+
 ## Set theme in config.toml
 
 마지막 단계입니다. config.toml에서 theme를 작성하여 goyo 테마를 사용하도록 합니다.
