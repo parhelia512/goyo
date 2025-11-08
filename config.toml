@@ -54,3 +54,8 @@ nav_ko = [
 
 # Edit this page Configuration
 edit_url = "https://github.com/hahwul/goyo/edit/main"
+
+# Share buttons Configuration
+# Set to true to enable individual share buttons
+enable_copy_url = false
+enable_share_x = false

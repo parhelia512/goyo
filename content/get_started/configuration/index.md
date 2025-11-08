@@ -190,6 +190,32 @@ edit_url = "https://github.com/hahwul/goyo/edit/main"
 
 The link will automatically append the relative path of the content file (e.g., `content/introduction/_index.md`).
 
+## Share Buttons
+`enable_copy_url` / `enable_share_x`
+
+- `enable_copy_url`: Enable "Copy URL" button at the bottom of each page/section. When clicked, it copies the current page URL to the clipboard and shows a "Copied!" confirmation for 2 seconds.
+- `enable_share_x`: Enable "Share on X" button at the bottom of each page/section. When clicked, it opens Twitter's sharing dialog with the page URL and title pre-filled.
+
+```toml
+[extra]
+enable_copy_url = false  # Default is false
+enable_share_x = false   # Default is false
+```
+
+You can enable them individually or both:
+
+```toml
+[extra]
+enable_copy_url = true   # Enable only Copy URL button
+enable_share_x = false   # Keep Share on X disabled
+```
+
+```toml
+[extra]
+enable_copy_url = true   # Enable both buttons
+enable_share_x = true
+```
+
 ## Comments
 `comments`
 

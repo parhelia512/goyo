@@ -191,6 +191,32 @@ edit_url = "https://github.com/hahwul/goyo/edit/main"
 
 링크는 자동으로 콘텐츠 파일의 상대 경로를 추가합니다 (예: `content/introduction/_index.md`).
 
+## 공유 버튼
+`enable_copy_url` / `enable_share_x`
+
+- `enable_copy_url`: 각 페이지/섹션 하단에 "Copy URL" 버튼을 표시합니다. 클릭하면 현재 페이지 URL을 클립보드에 복사하고 2초간 "Copied!" 확인 메시지를 표시합니다.
+- `enable_share_x`: 각 페이지/섹션 하단에 "Share on X" 버튼을 표시합니다. 클릭하면 페이지 URL과 제목이 미리 입력된 트위터 공유 대화상자가 열립니다.
+
+```toml
+[extra]
+enable_copy_url = false  # 기본값은 false
+enable_share_x = false   # 기본값은 false
+```
+
+개별적으로 활성화하거나 둘 다 활성화할 수 있습니다:
+
+```toml
+[extra]
+enable_copy_url = true   # Copy URL 버튼만 활성화
+enable_share_x = false   # Share on X는 비활성화 유지
+```
+
+```toml
+[extra]
+enable_copy_url = true   # 두 버튼 모두 활성화
+enable_share_x = true
+```
+
 ## 댓글
 `comments`
 
