@@ -341,6 +341,10 @@ function initToc() {
     return; // No ToC or headings on this page
   }
 
+  // Check if TOC should always be expanded
+  const tocContainer = document.querySelector(".hidden.lg\\:block");
+  const tocExpand = tocContainer && tocContainer.getAttribute("data-toc-expand") === "true";
+
   let activeId = null;
 
   const activateLink = (id) => {
@@ -348,9 +352,13 @@ function initToc() {
     
     activeId = id;
     
-    // Remove active class from all links and close all details
+    // Remove active class from all links
     tocLinks.forEach((link) => link.classList.remove("active"));
-    tocDetails.forEach((detail) => (detail.open = false));
+    
+    // Only close details if toc_expand is not enabled
+    if (!tocExpand) {
+      tocDetails.forEach((detail) => (detail.open = false));
+    }
 
     // Match links with href ending in #id (handles both relative and absolute URLs)
     const correspondingLink = document.querySelector(

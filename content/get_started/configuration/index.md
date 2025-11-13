@@ -5,6 +5,7 @@ weight = 4
 sort_by = "weight"
 
 [extra]
+toc_expand = true
 +++
 
 Now let's look at the settings for the Goyo theme. It provides various settings to customize the theme. You can use them in `config.toml`.
