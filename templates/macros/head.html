@@ -49,15 +49,36 @@
     </script>
 
     <style>
-        @font-face {
-            font-family: "Pretendard-Regular";
-            src: url('{{ get_url(path="fonts/Pretendard-Regular.woff") | safe }}') format("woff");
-            font-weight: 400;
-            font-style: normal;
-        }
-        body {
-            font-family: "Pretendard-Regular", sans-serif;
-        }
+        {% if config.extra.custom_font_enabled and config.extra.custom_font_path %}
+            {# Custom font configuration #}
+            {% set font_path = config.extra.custom_font_path %}
+            {% if font_path is starting_with("http://") or font_path is starting_with("https://") %}
+                {# Remote font URL - use @import #}
+                @import url('{{ font_path | safe }}');
+            {% else %}
+                {# Local font file - use @font-face #}
+                @font-face {
+                    font-family: "{{ config.extra.custom_font_name | default(value='CustomFont') }}";
+                    src: url('{{ get_url(path=font_path) | safe }}') format("woff");
+                    font-weight: 400;
+                    font-style: normal;
+                }
+            {% endif %}
+            body {
+                font-family: "{{ config.extra.custom_font_name | default(value='CustomFont') }}", sans-serif;
+            }
+        {% else %}
+            {# Default Pretendard font #}
+            @font-face {
+                font-family: "Pretendard-Regular";
+                src: url('{{ get_url(path="fonts/Pretendard-Regular.woff") | safe }}') format("woff");
+                font-weight: 400;
+                font-style: normal;
+            }
+            body {
+                font-family: "Pretendard-Regular", sans-serif;
+            }
+        {% endif %}
     </style>
 
     {% if page %}
