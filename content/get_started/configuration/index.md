@@ -67,6 +67,39 @@ default_colorset = "dark"
 
 {{ image_diff(src1="images/dark.png" src2="images/light.png" alt="Dark and Light") }}
 
+## Font
+`custom_font_enabled` / `custom_font_name` / `custom_font_path`
+
+- `custom_font_enabled`: Enable custom font. Set to `true` to use a custom font instead of the default.
+- `custom_font_name`: Name of the custom font family (e.g., `"Roboto"`, `"Noto Sans KR"`).
+- `custom_font_path`: Path to the font file. Can be either:
+  - **Local path**: Relative path to a local font file in the `static` directory (e.g., `"fonts/custom.woff"`)
+  - **Remote URL**: Full URL to a web font (e.g., `"https://fonts.googleapis.com/css2?family=Roboto"`)
+
+**Default**: By default, Goyo uses the **Pretendard** font, which provides excellent readability for Korean and English text.
+
+**Example - Local Font:**
+```toml
+[extra]
+custom_font_enabled = true
+custom_font_name = "MyCustomFont"
+custom_font_path = "fonts/mycustomfont.woff"
+```
+
+**Example - Google Fonts:**
+```toml
+[extra]
+custom_font_enabled = true
+custom_font_name = "Roboto"
+custom_font_path = "https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+```
+
+**Example - Default (Pretendard):**
+```toml
+[extra]
+custom_font_enabled = false  # Uses Pretendard font by default
+```
+
 ## Brightness
 `brightness`
 

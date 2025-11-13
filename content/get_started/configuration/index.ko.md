@@ -65,6 +65,39 @@ twitter_creator = "@hahwul"
 default_colorset = "dark"
 ```
 
+## 폰트
+`custom_font_enabled` / `custom_font_name` / `custom_font_path`
+
+- `custom_font_enabled`: 커스텀 폰트 사용 여부. 기본 폰트 대신 사용자 정의 폰트를 사용하려면 `true`로 설정합니다.
+- `custom_font_name`: 사용할 폰트 패밀리 이름 (예: `"Roboto"`, `"Noto Sans KR"`).
+- `custom_font_path`: 폰트 파일 경로. 다음 두 가지 형식을 지원합니다:
+  - **로컬 경로**: `static` 디렉토리 내 로컬 폰트 파일의 상대 경로 (예: `"fonts/custom.woff"`)
+  - **원격 URL**: 웹 폰트의 전체 URL (예: `"https://fonts.googleapis.com/css2?family=Roboto"`)
+
+**기본값**: Goyo는 기본적으로 **Pretendard** 폰트를 사용합니다. Pretendard는 한국어와 영어 텍스트에 대해 우수한 가독성을 제공합니다.
+
+**예제 - 로컬 폰트:**
+```toml
+[extra]
+custom_font_enabled = true
+custom_font_name = "MyCustomFont"
+custom_font_path = "fonts/mycustomfont.woff"
+```
+
+**예제 - 구글 폰트:**
+```toml
+[extra]
+custom_font_enabled = true
+custom_font_name = "Roboto"
+custom_font_path = "https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+```
+
+**예제 - 기본값 (Pretendard):**
+```toml
+[extra]
+custom_font_enabled = false  # 기본적으로 Pretendard 폰트 사용
+```
+
 ## 밝기
 `brightness`
 

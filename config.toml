@@ -30,6 +30,11 @@ gtag = ""
 sidebar_expand_depth = 1
 disable_root_sidebar_hide = false
 
+# Font Configuration
+custom_font_enabled = false  # Set to true to use custom font
+custom_font_name = ""  # Name of the custom font (e.g., "Roboto", "Noto Sans KR")
+custom_font_path = ""  # Local path (e.g., "fonts/custom.woff") or remote URL (e.g., "https://fonts.googleapis.com/css2?family=Roboto")
+
 # Language display names for the language selector
 # If not defined, the language code will be displayed
 lang_aliases = { en = "English", ko = "한국어" }
