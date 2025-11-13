@@ -10,6 +10,8 @@ toc_expand = true
 
 Page configuration allows you to customize the behavior and appearance of individual pages in your Goyo documentation site. These settings are defined in the front matter of each content file using the `[extra]` section.
 
+> **Note:** This page demonstrates the `toc_expand` feature - notice how the Table of Contents on the right is fully expanded by default!
+
 ## Table of Contents (TOC) Configuration
 
 ### TOC Expand
