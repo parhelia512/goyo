@@ -9,7 +9,9 @@ sort_by = "weight"
 
 Now let's look at the settings for the Goyo theme. It provides various settings to customize the theme. You can use them in `config.toml`.
 
-## Logo
+## Design & Branding
+
+### Logo
 `logo_text` / `logo_image_path` / `logo_image_padding`
 
 - `logo_text`: Text displayed when no logo image is present.
@@ -23,7 +25,7 @@ logo_image_path = "images/goyo.png"
 logo_image_padding = "5px"
 ```
 
-## Footer
+### Footer
 `footer_html`
 
 - `footer_html`: HTML code displayed in the footer.
@@ -33,7 +35,9 @@ logo_image_padding = "5px"
 footer_html = "Powered by <a href='https://www.getzola.org'>Zola</a> and <a href='https://github.com/hahwul/goyo'>Goyo</a>"
 ```
 
-## Thumbnail
+## SEO & Social
+
+### Thumbnail
 `default_thumbnail`
 
 - `default_thumbnail`: Path to the default thumbnail image.
@@ -43,7 +47,7 @@ footer_html = "Powered by <a href='https://www.getzola.org'>Zola</a> and <a href
 default_thumbnail = "images/default_thumbnail.jpg"
 ```
 
-## Twitter
+### Twitter
 `twitter_site` / `twitter_creator`
 
 - `twitter_site`: Twitter site handle.
@@ -55,7 +59,19 @@ twitter_site = "@hahwul"
 twitter_creator = "@hahwul"
 ```
 
-## Color
+### Google Tag
+`gtag`
+
+- `gtag`: Google Tag ID.
+
+```toml
+[extra]
+gtag = "G-XXXXXXXXXX"
+```
+
+## Navigation & UI
+
+### Color
 `default_colorset`
 
 - `default_colorset`: Default theme (dark/light).
@@ -67,7 +83,7 @@ default_colorset = "dark"
 
 {{ image_diff(src1="images/dark.png" src2="images/light.png" alt="Dark and Light") }}
 
-## Font
+### Font
 `custom_font_enabled` / `custom_font_name` / `custom_font_path`
 
 - `custom_font_enabled`: Enable custom font. Set to `true` to use a custom font instead of the default.
@@ -100,7 +116,7 @@ custom_font_path = "https://fonts.googleapis.com/css2?family=Roboto&display=swap
 custom_font_enabled = false  # Uses Pretendard font by default
 ```
 
-## Brightness
+### Brightness
 `brightness`
 
 - `brightness`: Controls the overall brightness of the theme colors. Options are:
@@ -115,17 +131,7 @@ brightness = "normal"  # Options: "darker", "normal", "lighter"
 
 {{ carousel(images=["images/darker.png", "images/normal.png", "images/lighter.png"]) }}
 
-## Google Tag
-`gtag`
-
-- `gtag`: Google Tag ID.
-
-```toml
-[extra]
-gtag = "G-XXXXXXXXXX"
-```
-
-## Sidebar Expand Depth
+### Sidebar Expand Depth
 `sidebar_expand_depth`
 
 - `sidebar_expand_depth`: Specifies the depth (up to 5) to which sidebar sections should be expanded by default. For example, a value of `1` will only show top-level sections, while `2` will expand the first level of subsections.
@@ -135,7 +141,7 @@ gtag = "G-XXXXXXXXXX"
 sidebar_expand_depth = 2
 ```
 
-## Navigations
+### Navigations
 `nav` / `nav_{lang}`
 
 - `nav`: Top navigation menu. name and icon fields is optional.
@@ -162,7 +168,7 @@ nav_ko = [
 ]
 ```
 
-## Language Aliases
+### Language Aliases
 `lang_aliases`
 
 - `lang_aliases`: Custom display names for languages in the language selector dropdown. If not defined, the language code will be displayed. This allows you to show user-friendly names like "English" or "한국어" instead of just "en" or "ko".
@@ -185,7 +191,7 @@ lang_aliases = {
 }
 ```
 
-## Disable Theme Toggle
+### Disable Theme Toggle
 `disable_theme_toggle`
 
 - `disable_theme_toggle`: If set to `true`, the theme toggle button (for switching between dark and light mode) will be hidden from the header.
@@ -195,7 +201,7 @@ lang_aliases = {
 disable_theme_toggle = true
 ```
 
-## Disable Root Sidebar Hide
+### Disable Root Sidebar Hide
 `disable_root_sidebar_hide`
 
 - `disable_root_sidebar_hide`: If set to `true`, the sidebar will not be hidden on the root page (`/` or `/{lang}/`). This allows the sidebar to always be visible, even on the main landing page.
@@ -211,7 +217,9 @@ disable_root_sidebar_hide = false
     alt="goyo"
 ) }}
 
-## Edit URL
+## Content & Sharing
+
+### Edit URL
 `edit_url`
 
 - `edit_url`: Base URL for editing pages. When set, an "Edit this page" link will appear at the bottom of each page/section, linking to the source file in your repository.
@@ -223,7 +231,7 @@ edit_url = "https://github.com/hahwul/goyo/edit/main"
 
 The link will automatically append the relative path of the content file (e.g., `content/introduction/_index.md`).
 
-## Share Buttons
+### Share Buttons
 `enable_copy_url` / `enable_share_x`
 
 - `enable_copy_url`: Enable "Copy URL" button at the bottom of each page/section. When clicked, it copies the current page URL to the clipboard and shows a "Copied!" confirmation for 2 seconds.
@@ -249,7 +257,7 @@ enable_copy_url = true   # Enable both buttons
 enable_share_x = true
 ```
 
-## Comments
+### Comments
 `comments`
 
 - `comments`: Comment feature settings (giscus/utterances).

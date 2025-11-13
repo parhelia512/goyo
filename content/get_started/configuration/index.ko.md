@@ -9,7 +9,9 @@ sort_by = "weight"
 
 이제 Goyo 테마의 설정을 알아봅니다. 테마를 커스텀하게 사용하기 위한 여러가지 설정을 제공합니다. `config.toml`에서 사용할 수 있습니다.
 
-## 로고
+## 디자인 & 브랜딩
+
+### 로고
 `logo_text` / `logo_image_path` / `logo_image_padding`
 
 - `logo_text`: 로고 이미지 없을 때 표시되는 텍스트
@@ -23,7 +25,7 @@ logo_image_path = "images/goyo.png"
 logo_image_padding = "5px"
 ```
 
-## 푸터
+### 푸터
 `footer_html`
 
 - `footer_html`: 푸터에 표시되는 HTML 코드
@@ -33,7 +35,9 @@ logo_image_padding = "5px"
 footer_html = "Powered by <a href='https://www.getzola.org'>Zola</a> and <a href='https://github.com/hahwul/goyo'>Goyo</a>"
 ```
 
-## 썸네일
+## SEO & 소셜
+
+### 썸네일
 `default_thumbnail`
 
 - `default_thumbnail`: 기본 썸네일 이미지 경로
@@ -43,7 +47,7 @@ footer_html = "Powered by <a href='https://www.getzola.org'>Zola</a> and <a href
 default_thumbnail = "images/default_thumbnail.jpg"
 ```
 
-## 트위터
+### 트위터
 `twitter_site` / `twitter_creator`
 
 - `twitter_site`: 트위터 사이트 핸들
@@ -55,7 +59,19 @@ twitter_site = "@hahwul"
 twitter_creator = "@hahwul"
 ```
 
-## 컬러셋
+### 구글 태그
+`gtag`
+
+- `gtag`: 구글 태그 ID
+
+```toml
+[extra]
+gtag = "G-XXXXXXXXXX"
+```
+
+## 네비게이션 & UI
+
+### 컬러셋
 `default_colorset`
 
 - `default_colorset`: 기본 테마 (dark/light)
@@ -65,7 +81,7 @@ twitter_creator = "@hahwul"
 default_colorset = "dark"
 ```
 
-## 폰트
+### 폰트
 `custom_font_enabled` / `custom_font_name` / `custom_font_path`
 
 - `custom_font_enabled`: 커스텀 폰트 사용 여부. 기본 폰트 대신 사용자 정의 폰트를 사용하려면 `true`로 설정합니다.
@@ -98,7 +114,7 @@ custom_font_path = "https://fonts.googleapis.com/css2?family=Roboto&display=swap
 custom_font_enabled = false  # 기본적으로 Pretendard 폰트 사용
 ```
 
-## 밝기
+### 밝기
 `brightness`
 
 - `brightness`: 테마 전반적인 색상의 밝기를 조절합니다. 옵션:
@@ -116,17 +132,7 @@ brightness = "normal"  # 옵션: "darker", "normal", "lighter"
 - 라이트 테마를 더 어둡게 만들려면: `brightness = "darker"` 와 `default_colorset = "light"` 설정
 - 다크 테마를 더 밝게 만들려면: `brightness = "lighter"`
 
-## 구글 태그
-`gtag`
-
-- `gtag`: 구글 태그 ID
-
-```toml
-[extra]
-gtag = "G-XXXXXXXXXX"
-```
-
-## 사이드바 확장 깊이
+### 사이드바 확장 깊이
 `sidebar_expand_depth`
 
 - `sidebar_expand_depth`: 사이드바 섹션이 기본적으로 확장되어야 하는 깊이(최대 5)를 지정합니다. 예를 들어, `1` 값은 최상위 섹션만 표시하고, `2`는 첫 번째 하위 섹션 수준을 확장합니다.
@@ -136,7 +142,7 @@ gtag = "G-XXXXXXXXXX"
 sidebar_expand_depth = 2
 ```
 
-## 네비게이션
+### 네비게이션
 `nav` / `nav_{lang}`
 
 - `nav`: 상단 네비게이션 메뉴입니다. name과 icon 필드는 optional 입니다.
@@ -163,7 +169,7 @@ nav_ko = [
 ]
 ```
 
-## 언어 별칭
+### 언어 별칭
 `lang_aliases`
 
 - `lang_aliases`: 언어 선택 드롭다운에 표시될 언어의 사용자 정의 이름입니다. 정의하지 않으면 언어 코드가 표시됩니다. 이를 통해 "en" 또는 "ko" 대신 "English" 또는 "한국어"와 같은 사용자 친화적인 이름을 표시할 수 있습니다.
@@ -186,7 +192,7 @@ lang_aliases = {
 }
 ```
 
-## 테마 토글 비활성화
+### 테마 토글 비활성화
 `disable_theme_toggle`
 
 - `disable_theme_toggle`: `true`로 설정하면 상단 네비게이션에서 테마(다크/라이트) 토글 버튼이 표시되지 않습니다.
@@ -196,7 +202,7 @@ lang_aliases = {
 disable_theme_toggle = true
 ```
 
-## 루트 사이드바 숨기기 비활성화
+### 루트 사이드바 숨기기 비활성화
 `disable_root_sidebar_hide`
 
 - `disable_root_sidebar_hide`: `true`로 설정하면 루트 페이지 (`/` 또는 `/{lang}/`)에서 사이드바가 숨겨지지 않습니다. 이를 통해 메인 랜딩 페이지에서도 사이드바를 항상 볼 수 있습니다.
@@ -212,7 +218,9 @@ disable_root_sidebar_hide = false
     alt="goyo"
 ) }}
 
-## 편집 URL
+## 콘텐츠 & 공유
+
+### 편집 URL
 `edit_url`
 
 - `edit_url`: 페이지 편집을 위한 기본 URL. 설정하면 각 페이지/섹션 하단에 "Edit this page" 링크가 나타나며, 저장소의 소스 파일로 연결됩니다.
@@ -224,7 +232,7 @@ edit_url = "https://github.com/hahwul/goyo/edit/main"
 
 링크는 자동으로 콘텐츠 파일의 상대 경로를 추가합니다 (예: `content/introduction/_index.md`).
 
-## 공유 버튼
+### 공유 버튼
 `enable_copy_url` / `enable_share_x`
 
 - `enable_copy_url`: 각 페이지/섹션 하단에 "Copy URL" 버튼을 표시합니다. 클릭하면 현재 페이지 URL을 클립보드에 복사하고 2초간 "Copied!" 확인 메시지를 표시합니다.
@@ -250,7 +258,7 @@ enable_copy_url = true   # 두 버튼 모두 활성화
 enable_share_x = true
 ```
 
-## 댓글
+### 댓글
 `comments`
 
 - `comments`: 댓글 기능 설정 (giscus/utterances)
