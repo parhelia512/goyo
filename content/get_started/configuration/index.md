@@ -27,21 +27,18 @@ logo_image_padding = "5px"
 ```
 
 ### Footer
-`footer_html` / `footer_copyright`
+`footer_html`
 
 - `footer_html`: HTML code displayed in the footer.
-- `footer_copyright`: Optional copyright or additional text displayed at the bottom of the footer.
 
 ```toml
 [extra]
 footer_html = "Powered by <a href='https://www.getzola.org'>Zola</a> and <a href='https://github.com/hahwul/goyo'>Goyo</a>"
-footer_copyright = "© 2024 Your Name. All rights reserved."
 ```
 
 The footer displays:
 1. Logo and site name
 2. Powered by text (customizable via `footer_html`)
-3. Optional copyright text
 
 ## SEO & Social
 

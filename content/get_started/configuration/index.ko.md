@@ -27,21 +27,18 @@ logo_image_padding = "5px"
 ```
 
 ### 푸터
-`footer_html` / `footer_copyright`
+`footer_html`
 
 - `footer_html`: 푸터에 표시되는 HTML 코드
-- `footer_copyright`: 푸터 하단에 표시되는 선택적 저작권 또는 추가 텍스트
 
 ```toml
 [extra]
 footer_html = "Powered by <a href='https://www.getzola.org'>Zola</a> and <a href='https://github.com/hahwul/goyo'>Goyo</a>"
-footer_copyright = "© 2024 Your Name. All rights reserved."
 ```
 
 푸터는 다음을 표시합니다:
 1. 로고 및 사이트 이름
 2. Powered by 텍스트 (`footer_html`로 커스터마이징 가능)
-3. 선택적 저작권 텍스트
 
 ## SEO & 소셜
 
