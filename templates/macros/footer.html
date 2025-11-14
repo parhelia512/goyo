@@ -1,16 +1,8 @@
 {% macro footer(config) %}
-<footer class="footer pt-8 pb-6 px-4 mt-6 border-t border-gray-500/20">
+<footer class="footer pt-8 pb-6 px-4 mt-6 border-t border-gray-500/50">
     <div class="w-full">
         <!-- Main footer content -->
-        <div class="flex flex-col items-center gap-4 mb-4">
-            <!-- Logo/Brand Section -->
-            <div class="flex items-center gap-3">
-                {% if config.extra.logo_image_path %}
-                <img src="{{ get_url(path=config.extra.logo_image_path) | safe }}" alt="{{ config.extra.logo_text | default(value=config.title) }}" class="w-8 h-8 rounded-md opacity-70" />
-                {% endif %}
-                <span class="text-base font-semibold text-base-content/80">{{ config.extra.logo_text | default(value=config.title) }}</span>
-            </div>
-            
+        <div class="flex flex-col items-center gap-4 mb-4">            
             <!-- Powered by section with better styling -->
             <div class="text-center">
                 <p class="text-sm text-base-content/60 leading-relaxed">
