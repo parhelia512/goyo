@@ -27,26 +27,21 @@ logo_image_padding = "5px"
 ```
 
 ### Footer
-`footer_html` / `github_url` / `twitter_site` / `footer_copyright`
+`footer_html` / `footer_copyright`
 
 - `footer_html`: HTML code displayed in the footer.
-- `github_url`: GitHub repository URL. When set, a GitHub icon link will appear in the footer.
-- `twitter_site`: Twitter handle (used for both Twitter card metadata and footer icon). When set, a Twitter icon link will appear in the footer.
 - `footer_copyright`: Optional copyright or additional text displayed at the bottom of the footer.
 
 ```toml
 [extra]
 footer_html = "Powered by <a href='https://www.getzola.org'>Zola</a> and <a href='https://github.com/hahwul/goyo'>Goyo</a>"
-github_url = "https://github.com/hahwul/goyo"
-twitter_site = "@hahwul"
 footer_copyright = "© 2024 Your Name. All rights reserved."
 ```
 
 The footer displays:
 1. Logo and site name
 2. Powered by text (customizable via `footer_html`)
-3. Social icons (GitHub and Twitter) if configured
-4. Optional copyright text
+3. Optional copyright text
 
 ## SEO & Social
 

@@ -27,26 +27,21 @@ logo_image_padding = "5px"
 ```
 
 ### 푸터
-`footer_html` / `github_url` / `twitter_site` / `footer_copyright`
+`footer_html` / `footer_copyright`
 
 - `footer_html`: 푸터에 표시되는 HTML 코드
-- `github_url`: GitHub 저장소 URL. 설정 시 푸터에 GitHub 아이콘 링크가 표시됩니다.
-- `twitter_site`: Twitter 핸들 (Twitter 카드 메타데이터 및 푸터 아이콘에 사용됨). 설정 시 푸터에 Twitter 아이콘 링크가 표시됩니다.
 - `footer_copyright`: 푸터 하단에 표시되는 선택적 저작권 또는 추가 텍스트
 
 ```toml
 [extra]
 footer_html = "Powered by <a href='https://www.getzola.org'>Zola</a> and <a href='https://github.com/hahwul/goyo'>Goyo</a>"
-github_url = "https://github.com/hahwul/goyo"
-twitter_site = "@hahwul"
 footer_copyright = "© 2024 Your Name. All rights reserved."
 ```
 
 푸터는 다음을 표시합니다:
 1. 로고 및 사이트 이름
 2. Powered by 텍스트 (`footer_html`로 커스터마이징 가능)
-3. 소셜 아이콘 (GitHub 및 Twitter, 설정된 경우)
-4. 선택적 저작권 텍스트
+3. 선택적 저작권 텍스트
 
 ## SEO & 소셜
 

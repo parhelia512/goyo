@@ -17,22 +17,6 @@
                     {{ config.extra.footer_html | default(value="Powered by <a href='https://www.getzola.org' class='font-medium text-base-content/70 hover:text-base-content transition-colors duration-200'>Zola</a> and <a href='https://github.com/hahwul/goyo' class='font-medium text-base-content/70 hover:text-base-content transition-colors duration-200'>Goyo</a>" | safe) | safe }}
                 </p>
             </div>
-            
-            <!-- Social Links (if configured) -->
-            {% if config.extra.github_url or config.extra.twitter_site %}
-            <div class="flex items-center gap-3 mt-2">
-                {% if config.extra.github_url %}
-                <a href="{{ config.extra.github_url }}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center rounded-lg bg-base-content/5 hover:bg-base-content/10 text-base-content/60 hover:text-base-content transition-all duration-200" aria-label="GitHub">
-                    <i class="fa-brands fa-github text-lg"></i>
-                </a>
-                {% endif %}
-                {% if config.extra.twitter_site %}
-                <a href="https://twitter.com/{{ config.extra.twitter_site | replace(from='@', to='') }}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 flex items-center justify-center rounded-lg bg-base-content/5 hover:bg-base-content/10 text-base-content/60 hover:text-base-content transition-all duration-200" aria-label="Twitter">
-                    <i class="fa-brands fa-twitter text-lg"></i>
-                </a>
-                {% endif %}
-            </div>
-            {% endif %}
         </div>
         
         <!-- Copyright/Additional info -->
