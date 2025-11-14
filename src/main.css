@@ -1910,3 +1910,91 @@ h6:hover .copy-heading-link-button {
         overflow: hidden;
     }
 }
+
+/* Enhanced Footer Styling */
+footer.footer {
+    background: linear-gradient(
+        to top,
+        rgba(100, 116, 139, 0.03) 0%,
+        transparent 100%
+    );
+}
+
+[data-theme="night"][data-brightness="darker"] footer.footer {
+    background: linear-gradient(
+        to top,
+        rgba(40, 40, 50, 0.05) 0%,
+        transparent 100%
+    );
+}
+
+[data-theme="night"][data-brightness="lighter"] footer.footer {
+    background: linear-gradient(
+        to top,
+        rgba(120, 130, 150, 0.04) 0%,
+        transparent 100%
+    );
+}
+
+[data-theme="lofi"] footer.footer {
+    background: linear-gradient(
+        to top,
+        rgba(100, 116, 139, 0.02) 0%,
+        transparent 100%
+    );
+}
+
+[data-theme="lofi"][data-brightness="darker"] footer.footer {
+    background: linear-gradient(
+        to top,
+        rgba(71, 85, 105, 0.04) 0%,
+        transparent 100%
+    );
+}
+
+[data-theme="lofi"][data-brightness="lighter"] footer.footer {
+    background: linear-gradient(
+        to top,
+        rgba(148, 163, 184, 0.02) 0%,
+        transparent 100%
+    );
+}
+
+/* Footer link hover effects */
+footer.footer a {
+    position: relative;
+    text-decoration: none;
+}
+
+footer.footer a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+}
+
+footer.footer a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Footer social icons */
+footer.footer .social-icon {
+    transition: all 0.3s ease;
+}
+
+footer.footer .social-icon:hover {
+    transform: translateY(-2px);
+}
+
+/* Footer responsive adjustments */
+@media (max-width: 768px) {
+    footer.footer {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+}
