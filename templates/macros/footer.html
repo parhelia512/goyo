@@ -1,9 +1,24 @@
 {% macro footer(config) %}
-<footer class="footer pt-4 px-4 border-t border-gray-500/15">
-    <aside>
-        <p class="text-gray-500/15 text-xs pb-2">
-            {{ config.extra.footer_html | default(value="Powered by <a href='https://www.getzola.org'>Zola</a> and <a href='https://github.com/hahwul/goyo'>Goyo</a>" | safe) | safe }}
-        </p>
-    </aside>
+<footer class="footer pt-8 pb-6 px-4 mt-6 border-t border-gray-500/50">
+    <div class="w-full">
+        <!-- Main footer content -->
+        <div class="flex flex-col items-center gap-4 mb-4">            
+            <!-- Powered by section with better styling -->
+            <div class="text-center">
+                <p class="text-sm text-base-content/60 leading-relaxed">
+                    {{ config.extra.footer_html | default(value="Powered by <a href='https://www.getzola.org' class='font-medium text-base-content/70 hover:text-base-content transition-colors duration-200'>Zola</a> and <a href='https://github.com/hahwul/goyo' class='font-medium text-base-content/70 hover:text-base-content transition-colors duration-200'>Goyo</a>" | safe) | safe }}
+                </p>
+            </div>
+        </div>
+        
+        <!-- Copyright/Additional info -->
+        {% if config.extra.footer_copyright %}
+        <div class="text-center pt-4 border-t border-gray-500/10">
+            <p class="text-xs text-base-content/50">
+                {{ config.extra.footer_copyright | safe }}
+            </p>
+        </div>
+        {% endif %}
+    </div>
 </footer>
 {% endmacro footer %}
