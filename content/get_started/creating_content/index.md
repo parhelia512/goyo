@@ -8,54 +8,106 @@ Zola creates and manages documents in the `content` subdirectory. Goyo automatic
 
 ## Page
 
-First, let's create a page.
+First, let's create a page. Create a directory `./content/hello_world` and add an `index.md` file with the following content:
 
-```bash
-mkdir ./content/hello_world
+**File: `./content/hello_world/index.md`**
 
-echo '+++
+```toml
++++
 title = "Hello World"
 weight = 1
-sort_by = "weight"
 
 [extra]
-+++' > ./content/hello_world/index.md
++++
 ```
 
-[http://localhost:1111/hello-world](http://localhost:1111/hello-world)
+You can add markdown content below the front matter:
+
+```markdown
++++
+title = "Hello World"
+weight = 1
+
+[extra]
++++
+
+# Welcome to Hello World
+
+This is your first page content. You can write any markdown here.
+
+- List item 1
+- List item 2
+
+## Subsection
+
+Add more content as needed.
+```
+
+After creating this file, you can view it at [http://localhost:1111/hello-world](http://localhost:1111/hello-world)
 
 ## Section
 
-Next, let's create a section. A section is a page that holds multiple other pages. We'll create first and second pages under a list section.
+Next, let's create a section. A section is a page that holds multiple other pages. We'll create a list section with first and second pages.
 
-```bash
-mkdir ./content/list
-mkdir ./content/list/first
-mkdir ./content/list/second
+Create the following directory structure:
+```
+content/
+└── list/
+    ├── _index.md
+    ├── first/
+    │   └── index.md
+    └── second/
+        └── index.md
+```
 
-echo '+++
+**File: `./content/list/_index.md`**
+
+```toml
++++
 title = "List"
-weight = 1
-sort_by = "weight"
-
-[extra]
-+++' > ./content/list/_index.md
-
-echo '+++
-title = "First"
-weight = 1
-sort_by = "weight"
-
-[extra]
-+++' > ./content/list/first/index.md
-
-echo '+++
-title = "Second"
 weight = 2
 sort_by = "weight"
 
 [extra]
-+++' > ./content/list/second/index.md
++++
+```
+
+**File: `./content/list/first/index.md`**
+
+```toml
++++
+title = "First"
+weight = 1
+
+[extra]
++++
+```
+
+Add some content:
+
+```markdown
+# First Page
+
+This is the first page under the list section.
+```
+
+**File: `./content/list/second/index.md`**
+
+```toml
++++
+title = "Second"
+weight = 2
+
+[extra]
++++
+```
+
+Add some content:
+
+```markdown
+# Second Page
+
+This is the second page under the list section.
 ```
 
 You can continue to build your structured documentation in this manner.
