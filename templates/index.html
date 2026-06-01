@@ -110,8 +110,11 @@
               window.defaultColorset = "{{ js_theme_colorset }}";
               window.darkBrightness = "{{ js_dark_brightness }}";
               window.lightBrightness = "{{ js_light_brightness }}";
-              window.themeMap = { "dark": "goyo-dark", "light": "goyo-light" };
-              window.fallbackTheme = window.themeMap[window.defaultColorset] || "goyo-dark";
+              window.themeMap = {
+                  "dark": (window.themeConfig && window.themeConfig.darkTheme) || "goyo-dark",
+                  "light": (window.themeConfig && window.themeConfig.lightTheme) || "goyo-light"
+              };
+              window.fallbackTheme = window.themeMap[window.defaultColorset] || (window.themeConfig && window.themeConfig.darkTheme) || "goyo-dark";
 
               // Theme mapping - maps user-friendly names to actual DaisyUI theme names
               var themeMapping = { "goyo-dark": "night", "goyo-light": "lofi" };
