@@ -124,7 +124,7 @@
               // Initialize and run Mermaid only when loaded
               window.initMermaid = function() {
                 var mermaidTheme = "dark";
-                if(currentUserTheme == "goyo-light") {
+                if(currentUserTheme == window.themeMap["light"]) {
                   mermaidTheme = "light";
                 }
 
